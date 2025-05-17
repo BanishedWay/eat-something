@@ -37,9 +37,6 @@ eat-something/
 │
 ├── js/                # JavaScript文件
 │   ├── app.js         # 应用主逻辑
-│   ├── data.js        # 菜品数据模块
-│   ├── main.js        # 全局函数和初始化
-│   └── restaurant.js  # 餐厅和菜品展示功能
 │
 ├── index.html         # 主页面
 ├── styles.css         # 主样式表
