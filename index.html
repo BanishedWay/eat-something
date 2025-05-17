@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>吃了吗</title>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="image_src" href="images/">
+  <!-- <script src="./js/app.js"></script> -->
+</head>
+
+<body>
+  <!-- <script src="./js/app.js"></script> -->
+
+  <!-- 首页 -->
+  <div class="container" id="home-page">
+    <div class="topbar">
+      <div class="restaurant-select" onclick="toggleDropdown()">
+        <span class="icon">📍</span>
+        <span id="current-restaurant">学苑食堂</span>
+        <span style="margin-left:4px;">&#9662;</span>
+        <div class="dropdown" id="dropdown">
+          <div onclick="selectRestaurant('学苑食堂'); toggleDropdown()">学苑食堂</div>
+          <div onclick="selectRestaurant('明湖餐厅'); toggleDropdown()">明湖餐厅</div>
+        </div>
+      </div>
+      <div class="topbar-logo">
+        <img src="images/眼镜蛇.png" alt="Logo" class="logo">
+        <div class="header">吃了吗</div>
+      </div>
+      <!-- <a href="#" onclick="showPage('row'); return false;" class="blind-box-nav-btn" title="美食盲盒">盲盒</a> -->
+      <button class="map-btn" onclick="showMap()" title="查看地图">🗺️</button>
+    </div>
+    <div class="search-box">
+      <input type="text" class="search-input" id="search-input" placeholder="搜索菜品..." oninput="searchDish(this.value)">
+      <span class="search-icon">🔍</span>
+    </div>
+    <div class="tabs">
+      <div class="tab active" onclick="showMeal(0)">早餐</div>
+      <div class="tab" onclick="showMeal(1)">午餐</div>
+      <div class="tab" onclick="showMeal(2)">晚餐</div>
+    </div>
+    <!-- 早餐 -->
+    <div class="meal-list active" id="meal-0">
+      <div class="section-title-recommend">
+        <span>智能推荐菜品</span>
+        <a href="https://mp.weixin.qq.com/s/K9PdT4xR4x5zMrz6y5VjsA" target="_blank" class="discount-btn">本周优惠菜单</a>
+      </div>
+      <div class="recommend">
+        <div class="recommend-item">
+          <img src="皮蛋瘦肉粥.jfif" alt="皮蛋瘦肉粥">
+          <div class="recommend-info">
+            <div>皮蛋瘦肉粥</div>
+            <div class="price">￥4</div>
+            <div class="location">档口：A区</div>
+          </div>
+          <span class="recommend-stars">★★★★★</span>
+        </div>
+        <div class="recommend-item">
+          <img src="豆浆油条.jfif" alt="豆浆油条">
+          <div class="recommend-info">
+            <div>豆浆油条</div>
+            <div class="price">￥5</div>
+            <div class="location">档口：B区</div>
+          </div>
+          <span class="recommend-stars">★★★★☆</span>
+        </div>
+      </div>
+      <div class="section-title-container" style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="section-title">全部菜品</div>
+        <button class="back-from-search-btn" id="back-btn-0" onclick="handleBackFromSearch()">返回</button>
+      </div>
+      <ul class="dish-list">
+        <li class="dish-item">小笼包 <span class="price">￥4</span><span class="location">档口：A区</span></li>
+        <li class="dish-item">鸡蛋灌饼 <span class="price">￥5</span><span class="location">档口：B区</span></li>
+        <li class="dish-item">葱油饼 <span class="price">￥4</span><span class="location">档口：B区</span></li>
+      </ul>
+    </div>
+    <!-- 午餐 -->
+    <div class="meal-list" id="meal-1">
+      <div class="section-title-recommend">
+        <span>智能推荐菜品</span>
+        <a href="https://mp.weixin.qq.com/s/K9PdT4xR4x5zMrz6y5VjsA" target="_blank" class="discount-btn">本周优惠菜单</a>
+      </div>
+      <div class="recommend">
+        <div class="recommend-item">
+          <img src="宫保鸡丁.jfif" alt="宫保鸡丁">
+          <div class="recommend-info">
+            <div>宫保鸡丁</div>
+            <div class="price">￥12</div>
+            <div class="location">档口：D区</div>
+          </div>
+          <span class="recommend-stars">★★★★★</span>
+        </div>
+        <div class="recommend-item">
+          <img src="鱼香肉丝.jfif" alt="鱼香肉丝">
+          <div class="recommend-info">
+            <div>鱼香肉丝盖饭</div>
+            <div class="price">￥15</div>
+            <div class="location">档口：E区</div>
+          </div>
+          <span class="recommend-stars">★★★★☆</span>
+        </div>
+      </div>
+      <div class="section-title-container" style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="section-title">全部菜品</div>
+        <button class="back-from-search-btn" id="back-btn-1" onclick="handleBackFromSearch()">返回</button>
+      </div>
+      <ul class="dish-list">
+        <li class="dish-item">红烧排骨 <span class="price">￥12</span><span class="location">档口：D区</span></li>
+        <li class="dish-item">西红柿炒蛋 <span class="price">￥8</span><span class="location">档口：E区</span></li>
+        <li class="dish-item">青椒土豆丝 <span class="price">￥6</span><span class="location">档口：F区</span></li>
+      </ul>
+    </div>
+    <!-- 晚餐 -->
+    <div class="meal-list" id="meal-2">
+      <div class="section-title-recommend">
+        <span>智能推荐菜品</span>
+        <a href="https://mp.weixin.qq.com/s/K9PdT4xR4x5zMrz6y5VjsA" target="_blank" class="discount-btn">本周优惠菜单</a>
+      </div>
+      <div class="recommend">
+        <div class="recommend-item">
+          <img src="番茄牛腩.jpg" alt="番茄牛腩">
+          <div class="recommend-info">
+            <div>番茄牛腩</div>
+            <div class="price">￥16.8</div>
+            <div class="location">档口：G区</div>
+          </div>
+          <span class="recommend-stars">★★★★★</span>
+        </div>
+        <div class="recommend-item">
+          <img src="清炒时蔬.jfif" alt="清炒时蔬">
+          <div class="recommend-info">
+            <div>清炒时蔬</div>
+            <div class="price">￥7</div>
+            <div class="location">档口：H区</div>
+          </div>
+          <span class="recommend-stars">★★★★☆</span>
+        </div>
+      </div>
+      <div class="section-title-container" style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="section-title">全部菜品</div>
+        <button class="back-from-search-btn" id="back-btn-2" onclick="handleBackFromSearch()">返回</button>
+      </div>
+      <ul class="dish-list">
+        <li class="dish-item">麻婆豆腐 <span class="price">￥7</span><span class="location">档口：G区</span></li>
+        <li class="dish-item">蒜蓉生菜 <span class="price">￥5</span><span class="location">档口：H区</span></li>
+        <li class="dish-item">红烧茄子 <span class="price">￥6</span><span class="location">档口：I区</span></li>
+      </ul>
+    </div>
+  </div>
+  <!-- 盲盒 -->
+  <div class="container" id="row-page" style="display:none;">
+    <div class="blind-box-header">
+      <h1>今天吃点啥？😋</h1>
+      <p class="blind-box-subtitle">宇宙难题，一键解决！</p>
+    </div>
+    <div class="controls-container">
+      <div class="control-group">
+        <label for="restaurant-select">选择食堂：</label>
+        <select id="restaurant-select">
+          <option value="" selected disabled>选个食堂试试？</option>
+          <!-- 食堂选项将由JS动态填充 -->
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="meal-type-select">选择餐别：</label>
+        <select id="meal-type-select">
+          <option value="" selected disabled>今天想吃啥？</option>
+          <option value="breakfast">元气早餐</option>
+          <option value="lunch">丰盛午餐</option>
+          <option value="dinner">美味晚餐</option>
+        </select>
+      </div>
+      <button id="draw-blind-box-btn">抽取盲盒</button>
+    </div>
+
+    <div id="blind-box-result-container">
+      <h2>🔮 命运の选择 🔮</h2>
+      <div id="blind-box-result">
+        <!-- 盲盒结果将显示在这里 -->
+        <p>请选择食堂和餐别后，点击“抽取盲盒”按钮，看看今天吃什么好运！</p>
+      </div>
+      <p class="blind-box-footer-text">✨ 祝您用餐愉快！✨</p>
+    </div>
+  </div>
+  <!-- 个人中心（我的） -->
+  <div class="container" id="profile-page" style="display:none;">
+    <div class="profile-header">
+      <div class="profile-bg"></div>
+      <div class="profile-title">我的</div>
+      <div class="profile-close">×</div>
+    </div>
+    <div class="profile-info">
+      <img src="images/眼镜蛇.png" class="profile-avatar" alt="头像">
+      <div class="profile-hello">Hello, <span id="profile-name">用户</span></div>
+      <div class="profile-desc">唯有梦想和美食不可辜负</div>
+    </div>
+    <div class="profile-balance-card">
+      <div class="profile-balance-item">
+        <div class="profile-balance-label">余额</div>
+        <div class="profile-balance-value" id="profile-balance">999.99</div>
+      </div>
+      <div class="profile-balance-item">
+        <div class="profile-balance-label">补贴</div>
+        <div class="profile-balance-value" id="profile-subsidy">0.00</div>
+      </div>
+    </div>
+    <div class="profile-balance-btns">
+      <button class="profile-btn profile-btn-orange" onclick="showRechargePopup()">立即充值</button>
+      <button class="profile-btn profile-btn-outline">开通自动充</button>
+    </div>
+    <div class="profile-section">
+      <div class="profile-section-title">我的订单 <span class="profile-section-more" onclick="showAllOrders()">查看全部
+          &gt;</span></div>
+      <div class="profile-orders">
+        <div class="profile-order-item" onclick="showPaidOrders()"><span class="profile-order-icon">￥</span>
+          <div>已付款</div>
+        </div>
+        <div class="profile-order-item" onclick="showRefundOrders()"><span class="profile-order-icon">⟳</span>
+          <div>退款/售后</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 底部导航栏 -->
+  <div class="bottom-nav">
+    <div class="nav-item" id="nav-home" onclick="showPage('home')">
+      <span class="nav-icon">🔔</span>
+      <div>首页</div>
+    </div>
+    <div class="nav-item" id="nav-row" onclick="showPage('row')">
+      <span class="nav-icon nav-icon-active">🎁</span>
+      <div>盲盒</div>
+    </div>
+    <div class="nav-item" id="nav-profile" onclick="showPage('profile')">
+      <span class="nav-icon nav-icon-active">😊</span>
+      <div>我的</div>
+    </div>
+  </div>
+
+  <!-- 充值弹窗 -->
+  <div id="recharge-popup" class="popup-mask" style="display:none;">
+    <div class="popup-content">
+      <span class="popup-close" onclick="closeRechargePopup()">×</span>
+      <img src="./images/收款码.png" alt="充值二维码" class="popup-img">
+      <div style="color: #e53935; font-size: 0.95em; margin-top: 8px;">
+        仅供娱乐！！！不要充值！！！如果你真的想投喂，那我无力挽回😋
+      </div>
+    </div>
+  </div>
+
+  <!-- 订单弹窗 -->
+  <div id="order-popup" class="popup-mask" style="display:none;">
+    <div class="popup-content">
+      <span class="popup-close" onclick="closeOrderPopup()">×</span>
+      <div id="order-popup-content"></div>
+    </div>
+  </div>
+
+  <script src="./js/app.js"></script>
+</body>
+
+</html>
